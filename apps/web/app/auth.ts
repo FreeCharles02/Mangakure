@@ -1,5 +1,5 @@
 // auth.ts
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthResult } from "next-auth"
 import GitHub from "next-auth/providers/github"
 
 const nextAuth = NextAuth({
@@ -7,6 +7,6 @@ const nextAuth = NextAuth({
 })
 
 export const handlers = nextAuth.handlers
-//export const auth = nextAuth.auth
+export const auth: NextAuthResult["auth"] = nextAuth.auth;
 export const signIn = nextAuth.signIn
 export const signOut = nextAuth.signOut

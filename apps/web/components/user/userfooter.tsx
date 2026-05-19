@@ -1,5 +1,5 @@
 'use client'
-import { LogOut, Settings, User } from "lucide-react"
+import { LogIn, LogOut, Settings, User } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "../../../../packages/ui/src/components/avatar"
 import { Button } from "../../../../packages/ui/src/components/button"
 import {
@@ -13,7 +13,7 @@ import {
 } from "../../../../packages/ui/src/components/dropdown-menu"
 
 import { useSession, signIn, signOut } from "next-auth/react";
-
+import { auth } from "@/app/auth"
 
 // Mock user data - replace with your auth state (e.g., NextAuth, Clerk, Supabase)
 const user = {
@@ -21,8 +21,8 @@ const user = {
   email: "alex@example.com",
   avatar: "https://github.com/shadcn.png", 
 }
-export function UserFooter() {
-
+const session = await auth();
+export async function UserFooter() {
   return (
     <div className="mt-auto border-t p-4 bg-background">
       <DropdownMenu>
@@ -62,8 +62,17 @@ export function UserFooter() {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="text-destructive focus:text-destructive">
+            {session ? 
+            <>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>
+            </>
+              : 
+              <>
+              <LogIn className="mr-2 h-4 w-4" />
+              <span>Log in</span>
+              </>
+              }
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
