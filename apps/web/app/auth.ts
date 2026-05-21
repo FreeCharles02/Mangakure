@@ -1,4 +1,3 @@
-// auth.ts
 import NextAuth, { NextAuthResult } from "next-auth"
 import GitHub from "next-auth/providers/github"
 

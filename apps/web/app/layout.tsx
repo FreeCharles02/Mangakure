@@ -23,20 +23,19 @@ export default function RootLayout({
   
   return (
   
-      <SidebarProvider>
     <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
-      >
-        <AppSidebar />
-      
+    lang="en"
+    suppressHydrationWarning
+    className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+    >
       <body>
+        <SidebarProvider>
+        <AppSidebar />
         <SidebarTrigger />
         <ThemeProvider>{children}</ThemeProvider>
+      </SidebarProvider>
       </body>
     
     </html>
-      </SidebarProvider>
   )
 }

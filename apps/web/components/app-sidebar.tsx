@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { UserFooter } from "./user/userfooter"
+import {UserFooter}  from "./user/userfooter"
 import {
   Sidebar,
   SidebarContent,
@@ -10,8 +10,10 @@ import {
   SidebarMenuBadge,
   SidebarMenuItem,
 } from "../../../packages/ui/src/components/sidebar"
+import { auth } from "@/app/auth";
 
-export function AppSidebar() {
+export async function AppSidebar() {
+  const session = await auth();
   return (
     <Sidebar>
       <SidebarHeader>
@@ -35,7 +37,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <UserFooter />
+        <UserFooter  session={session}/>
       </SidebarFooter>
     </Sidebar>
   )
